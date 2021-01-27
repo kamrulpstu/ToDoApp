@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="shortcut icon" href="/volt-layout/images/favicon.ico" /> 
+        <style type="text/css">
+            .ui-tree
+            {
+                background-color:#ffffff;
+                border-style: none !important
+            }
+            .ui-commandlink
+            {
+                color: #ffffff !important;
+            }
+            .ui-inputfield{
+                padding: 3px 4px !important;
+            }
+            .ui-panelgrid .ui-panelgrid-cell{
+                padding: 2px 10px !important;
+            }
+            .ui-datatable .ui-datatable-header{
+                padding: 2px 10px !important;
+            }
+            .ui-datatable table thead tr th{
+                padding: 2px !important;
+            }
+            .ui-datatable-tablewrapper{
+                margin: 6px !important;
+            }
+            .ui-button-text-only .ui-button-text{
+                padding: 7px 17px !important;
+            }
+            .ui-paginator .ui-paginator-rpp-options{
+                padding: 0px 4px !important;
+            }
+            .ui-selectonemenu-trigger .ui-icon-triangle-1-s{
+                margin-top: 5px !important;
+            }
+            .ui-messages-info-icon{
+                width: 31px !important;
+                height: 15px !important;
+                margin: 2px !important;
+            }
+
+            .ui-messages-error-icon{
+                width: 31px !important;
+                height: 15px !important;
+                margin: 2px !important;
+            }
+            .ui-messages ul{
+                margin-left: 22px !important;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+            .ui-messages-info{
+                padding: 3px !important;
+            }
+            .ui-messages-error{
+                padding: 3px !important; 
+            }
+            .ui-dialog{
+                box-shadow: none !important;
+                background-color: transparent !important;
+                color: transparent !important;
+                border-radius: 0px; 
+            }
+        </style>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>Task</title>
+        <ui:insert name="head" />
+    </h:head>
+
+    <h:body styleClass="BlueBody">
+        <h:form>
+            <div class="Container100">
+                <div class="Container100">
+                    <div class="Wid33 OvHidden DispBlock MarAuto WidAutoOnMobile" style="margin-top:7%;">
+                        <div class="Card ShadowEffect">
+                            <div class="Container100">
+                                <div class="Card OrangeBack White TexAlCenter Fs20 FontVoltBold">Log In Panel</div>
+                            </div>
+                            <div class="Container100 Responsive100">
+                                <div class="Card TexAlCenter">
+                                    <i class="icon-unlocked2 Fs60 TealGreen"></i>
+                                    <div class="EmptyBox10"></div>
+                                    <p:inputText styleClass="Wid90" value="#{loginController.userId}"  placeholder="User Id" required="true" requiredMessage="Please give your User id."/>
+                                    <div class="EmptyBox10"></div>
+                                    <p:password styleClass="Wid90" value="#{loginController.cred}"  placeholder="Password" required="true" requiredMessage="Please give your password."/>                                   
+                                    <div class="Separator"></div>
+                                    <center>
+                                        <p:messages id="login_err_msg" closable="true" style="width: 92%;"/>
+                                        <p:commandButton update="login_err_msg"  action="#{loginController.checkAuthorization}" value="Log In" icon="fa fa-unlock" ajax="false" styleClass="GreenButton" />
+                                    </center>
+                                    <div class="Separator"></div>
+                                    <footer>Powered by  : Md. Kamrul Hasan(Shamim)</footer>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
+
+        <h:outputStylesheet name="css/core-layout.css" library="volt-layout" />
+        <h:outputStylesheet name="css/animate.css" library="volt-layout" />
+        <h:outputStylesheet name="css/volt-font.css" library="volt-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="volt-layout" />
+        <h:outputStylesheet name="css/volt-layout.css" library="volt-layout" />
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" position="right bottom" resizable="false" showHeader="false">
+            <p:graphicImage name="images/bird-loading.gif" library="volt-layout"/>
+        </p:dialog>
+    </h:body>
+
+</html>

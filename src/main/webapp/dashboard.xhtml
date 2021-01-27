@@ -1,0 +1,107 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <div class="Container100 Responsive100 NoIndent">
+            <div class="Container100 ui-fluid">
+                <div class="CardTopic">
+
+                    <div style="float: left; margin-right: 25px;">
+                        <!--<p:graphicImage name="images/uddipan_logo.png" height="55px" width="50px"  id="bank_logo" library="volt-layout" />-->
+                    </div>
+                    <h2>Task</h2>
+
+                </div>
+                <div class="Separator"></div>
+            </div>
+        </div>  
+        <div class="Container100">
+
+            <!-- start search form section -->
+            <h:form id="search_frm">
+                <div class="Container100 ui-fluid">
+                    <p:fieldset legend="Search Criteria" toggleable="true" collapsed="false">
+                        <!-- start Add button section -->
+                        <div class="CardTopic" style="float: right">
+                            <p:commandButton id="save_btn"  value="Add Item" actionListener="#{itemController.redirectToAddIteam()}" 
+                                             onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()"  icon="fa fa-plus" />
+                        </div>
+                        <!-- end Add button section -->
+
+                        <div class="Separator"></div>
+                        <div class="Container50 Responsive100">
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+                                <p:outputLabel  value="Item Name"/>
+                                <p:inputText id="item_name_srch" value="#{itemController.itemSrcBean.itemName}"  maxlength="50"/>
+
+                                <p:outputLabel value="Item Description"/>
+                                <p:inputText id="item_desc_srch" value="#{itemController.itemSrcBean.itemDesc}"  maxlength="200"/>
+                            </p:panelGrid>
+                        </div>
+
+                        <div class="Container50 Responsive100"></div>
+
+                        <div class="Container100 Responsive100">
+                            <center>
+                                <p:messages id="item_search_msg" closable="true"/>
+                                <p:commandButton value="Search" actionListener="#{itemController.searchItem()}" 
+                                                 onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" update="item_tbl_id,item_search_msg" style="width: auto;" icon="fa fa-search"/>
+                            </center>
+                        </div>
+
+                        <!--data table start here-->
+                        <div class="Container100 Responsive100">
+                            <p:dataTable id="item_tbl_id" var="itmListObj" value="#{itemController.itemBeanList}" resizableColumns="true" 
+                                         rows="15" paginator="true" paginatorPosition="bottom" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="15,30,40,50" emptyMessage="No record found" reflow="true">
+
+                                <f:facet name="header">
+                                    Search Result
+                                </f:facet>
+
+                                <p:column headerText="Sl No" >
+                                    <h:outputText value="#{itmListObj.itemId}" />
+                                </p:column>
+                                <p:column headerText="Item Name">
+                                    <h:outputText value="#{itmListObj.itemName}" />
+                                </p:column>
+                                <p:column headerText="Item Date">
+                                    <h:outputText value="#{itmListObj.itemDate}" >
+                                        <f:convertDateTime pattern="dd-MMM-yyyy" />
+                                    </h:outputText>
+                                </p:column>
+
+                                <p:column headerText="Item Description">
+                                    <h:outputText value="#{itmListObj.itemDesc}" />
+                                </p:column>
+
+                                <p:column headerText="Edit" styleClass="edit-column-width">
+                                    <center>
+                                        <p:commandButton id="edit_item" icon="fa fa-edit" actionListener="#{itemController.putIteamForEdit(itmListObj)}" 
+                                                         style="height: 26px;" update=":search_frm" onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()"
+                                                         process="@this"/>
+                                        <p:tooltip for="edit_item" value="Update Record !!" showEffect="clip" hideEffect="explode"/>
+                                    </center>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+
+                    </p:fieldset>
+                </div>
+                <!-- end search form section -->
+            </h:form> 
+
+        </div>
+        <div class="Container100">
+            <div class="EmptyBox100"></div>
+            <div class="EmptyBox100"></div>
+            <div class="EmptyBox100"></div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

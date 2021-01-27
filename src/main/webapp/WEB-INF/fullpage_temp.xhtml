@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link rel="shortcut icon" href="/resources/volt-layout/images/favicon.ico" /> 
+        <style type="text/css">
+            .ui-tree
+            {
+                background-color:#ffffff;
+                border-style: none !important
+            }
+            .ui-commandlink
+            {
+                color: #ffffff !important;
+            }
+            .ui-inputfield{
+                padding: 3px 4px !important;
+            }
+            .ui-panelgrid .ui-panelgrid-cell{
+                padding: 2px 10px !important;
+            }
+            .ui-datatable .ui-datatable-header{
+                padding: 2px 10px !important;
+            }
+            .ui-datatable table thead tr th{
+              
+            }
+            .ui-datatable-tablewrapper{
+                margin: 6px !important;
+            }
+            .ui-button-text-only .ui-button-text{
+                padding: 7px 17px !important;
+            }
+            .ui-paginator .ui-paginator-rpp-options{
+                padding: 0px 4px !important;
+            }
+            .ui-selectonemenu-trigger .ui-icon-triangle-1-s{
+                margin-top: 5px !important;
+            }
+            .ui-datatable table tbody td{
+                padding: 0px 3px !important;
+            }
+            .ui-paginator .ui-paginator-pages{
+                padding: 0px 0px !important;
+            }
+            .ui-messages-info-icon{
+                width: 31px !important;
+                height: 15px !important;
+                margin: 2px !important;
+            }
+
+            .ui-messages-error-icon{
+                width: 31px !important;
+                height: 15px !important;
+                margin: 2px !important;
+            }
+            .ui-messages ul{
+                margin-left: 22px !important;
+                margin-top: 0px !important;
+                margin-bottom: 0px !important;
+            }
+            .ui-messages-info{
+                padding: 3px !important;
+            }
+            .ui-messages-error{
+                padding: 3px !important; 
+            }
+            .ui-selectonemenu-panel .ui-selectonemenu-list-item{
+                padding: 5px 14px !important;
+            }
+            .ui-button-text-only .ui-button-text{
+                padding: 9px 24px !important;
+            }
+            .ui-dialog{
+                box-shadow: none !important;
+                background-color: transparent !important;
+                color: transparent !important;
+                border-radius: 0px; 
+            }
+        </style>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>Task</title>
+        <h:outputScript name="js/layout.js" library="volt-layout" />
+        <ui:insert name="head" />
+    </h:head>
+
+    <h:body styleClass="BlueBody">
+
+        <ui:include src="topbar.xhtml" />
+
+        <div id="layout-portlets-cover">
+            <div id="layout-portlets-cover-indent">
+                <div id="layout-portlets-table">
+
+                    <div id="layout-portlets-tablerow">
+                        <div class="Container100">
+                            <ui:insert name="content">
+                                Template
+                            </ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h:outputStylesheet name="css/core-layout.css" library="volt-layout" />
+        <h:outputStylesheet name="css/animate.css" library="volt-layout" />
+        <h:outputStylesheet name="css/volt-font.css" library="volt-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="volt-layout" />
+        <h:outputStylesheet name="css/volt-layout.css" library="volt-layout" />
+    </h:body>
+
+</html>
+

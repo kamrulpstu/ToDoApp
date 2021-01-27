@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="refresh" content="#{facesContext.externalContext.sessionMaxInactiveInterval};url=#{request.contextPath}/Secured/login.xhtml" />
+        <link rel="shortcut icon" href="/volt-layout/images/favicon.ico" /> 
+        <style type="text/css">
+            .ui-tree
+            {
+                background-color:#ffffff;
+                border-style: none !important
+            }
+            .ui-commandlink
+            {
+                color: #ffffff !important;
+            }
+            .ui-inputfield{
+                padding: 3px 4px !important;
+            }
+            .ui-panelgrid .ui-panelgrid-cell{
+                padding: 2px 10px !important;
+            }
+            .ui-selectonemenu-trigger .ui-icon-triangle-1-s{
+                margin-top: 5px !important;
+            }
+            .ui-datatable table tbody td{
+                padding: 0px 3px !important;
+            }
+            .ui-button-text-only .ui-button-text{
+                padding: 9px 24px !important;
+            }
+            .ui-dialog{
+                box-shadow: none !important;
+                background-color: transparent !important;
+                color: transparent !important;
+                border-radius: 0px; 
+            }
+            .ui-clock{
+                padding: 0px 0px !important;
+                border-radius: 0px !important;
+                -webkit-border-radius: 0px !important;
+                -moz-border-radius: 0px !important;
+                background-color: #ffffff !important;
+                color: #29506b !important;
+                font-size: 16px;
+                font-weight: normal !important;
+                display: inline-block;
+            }
+            .ui-tree .ui-icon-triangle-1-s{
+                background-image: url("/Task/Secured/javax.faces.resource/images/minus-sign-gray.svg?ln=primefaces-volt") !important;
+
+            }
+            .ui-tree .ui-icon-triangle-1-e{
+                background-image: url("/Task/Secured/javax.faces.resource/images/plus-sign-navy.svg?ln=primefaces-volt") !important;
+            }
+        </style>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+        </f:facet>
+        <title>Task</title>
+        <h:outputScript name="js/layout.js" library="volt-layout" />
+        <ui:insert name="head" />
+    </h:head>
+
+    <h:body styleClass="BlueBody">
+
+        <ui:include src="topbar.xhtml" />
+
+        <div id="layout-portlets-cover">
+            <div id="layout-portlets-cover-indent">
+                <div id="layout-portlets-table">
+
+                    <div id="layout-portlets-tablerow">
+                        <div id="layout-portlets-tablecell-left" style="width: 25%;">
+                            <div class="ui-fluid">
+                                <p:tabView >
+                                    <p:tab title="Menu">
+                                        <!--                                        <h:form id="menu_frm">
+                                                                                    <p:outputPanel style="width: 100%; height:800px; overflow: auto; display: block;">
+                                                                                        <p:tree value="{loginController.root}" var="node" dynamic="true" animate="true" selectionMode="single" 
+                                                                                                selection="{loginController.selectedNode}" style="border: none; width: auto;" >
+                                                                                            <p:ajax event="select" listener="{loginController.onNodeSelect}" />
+                                                                                            <p:treeNode expandedIcon="ui-icon-folder-open" collapsedIcon="ui-icon-folder-collapsed">
+                                                                                                <h:outputText  value="{node.menuName}" style="font-family: 'Arial Narrow', Arial, sans-serif; "/>  
+                                                                                            </p:treeNode>
+                                                                                        </p:tree>
+                                                                                    </p:outputPanel>
+                                                                                </h:form>-->
+                                        <ul>
+                                            <li>
+                                                <a href="../Secured/item/Item.xhtml"><i class="icon-vcard Opac80"></i><span><span class="Fs16">All Option in Single Page</span> <br/> </span></a>
+                                            </li>
+                                        </ul>
+
+                                    </p:tab>
+                                </p:tabView>
+                            </div>
+                        </div>
+
+                        <div id="layout-portlets-tablecell-right">
+                            <ui:insert name="content">
+                                Template
+                            </ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Card Container100 TexAlCenter Fs14 FontVoltLight" style="margin-top: 2px;">
+                <center>
+                    <ui:include src="/version.xhtml" />
+                </center>
+            </div>
+        </div>
+
+
+        <h:outputStylesheet name="css/core-layout.css" library="volt-layout" />
+        <h:outputStylesheet name="css/animate.css" library="volt-layout" />
+        <h:outputStylesheet name="css/volt-font.css" library="volt-layout" />
+        <h:outputStylesheet name="css/font-awesome.css" library="volt-layout" />
+        <h:outputStylesheet name="css/volt-layout.css" library="volt-layout" />
+    </h:body>
+
+</html>

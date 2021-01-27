@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 26, 2021 8:17:04 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.task.kamrul.entity.Item" table="item" catalog="to_do" optimistic-lock="version">
+        <id name="itemId" type="int">
+            <column name="item_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="itemName" type="string">
+            <column name="item_name" length="50" not-null="true" />
+        </property>
+        <property name="itemDate" type="timestamp">
+            <column name="item_date" length="19" not-null="true" />
+        </property>
+        <property name="itemDesc" type="string">
+            <column name="item_desc" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,136 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/fullpage_temp.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <style type="text/css">
+            /*this is for calendar icon customize css*/
+            .ui-fluid .ui-trigger-calendar .ui-button-icon-only .ui-button-text {
+                height: 8px;
+                margin-left: 3px;
+                margin-right: 2px;
+            }
+        </style>
+        <!-- start search form section -->
+        <h:form id="item_srch_frm">
+            <div class="Container100 ui-fluid">
+                <p:fieldset legend="Search Criteria" toggleable="true" collapsed="true">
+                    <div class="CardTopic">Search Criteria</div>
+                    <div class="Separator"></div>
+                    <div class="Container50 Responsive100">
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+                            <p:outputLabel  value="Item Name"/>
+                            <p:inputText id="item_name_srch" value="#{itemController.itemSrcBean.itemName}"  maxlength="50"/>
+
+                            <p:outputLabel value="Item Description"/>
+                            <p:inputText id="item_desc_srch" value="#{itemController.itemSrcBean.itemDesc}"  maxlength="200"/>
+                        </p:panelGrid>
+                    </div>
+
+                    <div class="Container50 Responsive100"></div>
+
+                    <div class="Container100 Responsive100">
+                        <center>
+                            <p:messages id="item_search_msg" closable="true"/>
+                            <p:commandButton value="Search" actionListener="#{itemController.searchItem()}" 
+                                             onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()" update="item_tbl_id,item_search_msg" style="width: auto;" icon="fa fa-search"/>
+                        </center>
+                    </div>
+
+                    <div class="Container100 Responsive100">
+                        <p:dataTable id="item_tbl_id" var="itmListObj" value="#{itemController.itemBeanList}" resizableColumns="true" 
+                                     rows="15" paginator="true" paginatorPosition="bottom" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="15,30,40,50" emptyMessage="No record found" reflow="true">
+
+                            <f:facet name="header">
+                                Search Result
+                            </f:facet>
+
+                            <p:column headerText="Sl No" >
+                                <h:outputText value="#{itmListObj.itemId}" />
+                            </p:column>
+                            <p:column headerText="Item Name">
+                                <h:outputText value="#{itmListObj.itemName}" />
+                            </p:column>
+                            <p:column headerText="Item Date">
+                                <h:outputText value="#{itmListObj.itemDate}" >
+                                    <f:convertDateTime pattern="dd-MMM-yyyy" />
+                                </h:outputText>
+                            </p:column>
+
+                            <p:column headerText="Item Description">
+                                <h:outputText value="#{itmListObj.itemDesc}" />
+                            </p:column>
+
+                            <p:column headerText="Edit" styleClass="edit-column-width">
+                                <center>
+                                    <p:commandButton id="edit_item" icon="fa fa-edit" actionListener="#{itemController.putIteamForEdit(itmListObj)}" 
+                                                     style="height: 26px;" update=":item_reg_frm" onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()"
+                                                     process="@this"/>
+                                    <p:tooltip for="edit_item" value="Update Record !!" showEffect="clip" hideEffect="explode"/>
+                                </center>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+
+                </p:fieldset>
+            </div>
+            <!-- end search form section -->
+        </h:form>
+        <!-- start setup form section -->
+        <h:form id="item_reg_frm">
+            <div class="Container100 ui-fluid">
+                <div class="Card">
+                    <div class="CardTopic">Item Setup </div>
+                    <div class="Separator"></div>
+                    <div class="Container50 Responsive100">
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+                            <p:outputLabel for="item_name" value="Item Name"/>
+                            <p:inputText id="item_name" value="#{itemController.itemBean.itemName}" 
+                                         required="true" requiredMessage="Please Give Item Name" maxlength="50">
+                           </p:inputText>                            
+
+                            <p:outputLabel for="item_date_id" value="Item Date"/>
+                                <p:calendar id="item_date_id" value="#{itemController.itemBean.itemDate}"  
+                                            required="true" requiredMessage="Please Give Item Date" yearRange="c-50:c+50"  
+                                            pattern="dd-MMM-yyyy" readonlyInput="true" navigator="true" >
+                                    <p:ajax   process="@this" update="item_date_id" />
+                                </p:calendar>
+                                
+
+                            <p:outputLabel value="Item Description"/>                           
+                            <p:inputText  id="item_desc_id" value="#{itemController.itemBean.itemDesc}" 
+                                          maxlength="200" >
+                            </p:inputText>
+                        </p:panelGrid>                        
+                    </div>
+
+                </div>
+            </div>
+            <!-- end setup form section -->
+
+            <!-- start submit button section -->
+            <div class="Container100">
+                <div class="Card">
+                    <center>
+                        <p:messages id="item_save_msg" closable="true"/>
+                        <p:commandButton id="save_btn"  value="Create/Update Item" actionListener="#{itemController.createOrEditItem(3)}" 
+                                         update="item_reg_frm,item_save_msg" onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()"   style="width:auto; margin-right: 1%;" icon="fa fa-plus" />
+                    </center>
+                </div>
+            </div>
+
+            <!-- end submit button section -->
+        </h:form>
+
+        <p:dialog widgetVar="statusDialog" modal="true" position="right bottom" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage name="images/bird-loading.gif" library="volt-layout"/>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

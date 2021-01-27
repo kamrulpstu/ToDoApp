@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/fullpage_temp.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <style type="text/css">
+            /*this is for calendar icon customize css*/
+            .ui-fluid .ui-trigger-calendar .ui-button-icon-only .ui-button-text {
+                height: 8px;
+                margin-left: 3px;
+                margin-right: 2px;
+            }
+        </style>
+      
+        <!-- start Add form section -->
+        <h:form id="item_add_frm">
+            <div class="Container100 ui-fluid">
+                <div class="Card">
+                    <div class="CardTopic">Item Setup </div>
+                    <div class="Separator"></div>
+                    <div class="Container50 Responsive100">
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank" style="border:0px none; background-color:transparent;">
+
+                            <p:outputLabel for="add_item_name" value="Item Name"/>
+                            <p:inputText id="add_item_name" value="#{itemController.itemBean.itemName}" 
+                                         required="true" requiredMessage="Please Give Item Name" maxlength="50">
+                           </p:inputText>                            
+
+                            <p:outputLabel for="add_item_date" value="Item Date"/>
+                                <p:calendar id="add_item_date" value="#{itemController.itemBean.itemDate}"  
+                                            required="true" requiredMessage="Please Give Item Date" yearRange="c-50:c+50"  
+                                            pattern="dd-MMM-yyyy" readonlyInput="true" navigator="true" >
+                                    <p:ajax   process="@this" update="add_item_date" />
+                                </p:calendar>
+                                
+
+                            <p:outputLabel value="Item Description"/>                           
+                            <p:inputText  id="add_item_desc" value="#{itemController.itemBean.itemDesc}" maxlength="200" />
+                            
+                        </p:panelGrid>                        
+                    </div>
+
+                </div>
+            </div>
+            <!-- end setup form section -->
+
+            <!-- start submit button section -->
+            <div class="Container100">
+                <div class="Card">
+                    <center>
+                        <p:messages id="item_save_msg" closable="true"/>
+                        <p:commandButton id="save_btn"  value="Add Item" actionListener="#{itemController.createOrEditItem(1)}" 
+                                         update="item_add_frm,item_save_msg" onstart="PF('statusDialog').show()" oncomplete="PF('statusDialog').hide()"   style="width:auto; margin-right: 1%;" icon="fa fa-plus" />
+                    </center>
+                </div>
+            </div>
+
+            <!-- end submit button section -->
+        </h:form>
+
+        <p:dialog widgetVar="statusDialog" modal="true" position="right bottom" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage name="images/bird-loading.gif" library="volt-layout"/>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>
